@@ -1,5 +1,7 @@
 # WebApiVP
 
+La solution suitante permet de tester les deux Web API : /api/authenticate et /api/confidentails.
+
 Pour afficher le site Web :
 
 1/ Ouvrir la solution dans Visual Studio 2017 
