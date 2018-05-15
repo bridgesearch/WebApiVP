@@ -6,9 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace Ventre_Privee_WebApiIssue.Filters
+namespace Auth.WebApi.Filters
 {
-    public class ValidateUserParameter : Attribute, IActionFilter
+    public class UserParamsValidator : Attribute, IActionFilter
     {
         public void OnActionExecuted(ActionExecutedContext context)
         {

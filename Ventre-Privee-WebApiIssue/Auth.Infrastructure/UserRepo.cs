@@ -20,6 +20,11 @@ namespace Auth.Infrastructure
         {
             return _listusers.Contains(creds);
         }
+
+        public bool GetUserConfidentials(string email)
+        {
+            return _listusers.Exists(x => x.Login == email);
+        }
         /// <summary>
         /// 
         /// </summary>

@@ -8,5 +8,6 @@ namespace Auth.Core
    public interface IUserRepo
     {
         bool ValidateUser(User creds);
+        bool GetUserConfidentials(string email);
     }
 }

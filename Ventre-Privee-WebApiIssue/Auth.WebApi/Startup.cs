@@ -4,15 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Auth.Core;
 using Auth.Infrastructure;
+using Auth.WebApi.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Ventre_Privee_WebApiIssue.Filters;
 
-namespace Ventre_Privee_WebApiIssue
+namespace Auth.WebApi
 {
     public class Startup
     {
@@ -27,9 +27,12 @@ namespace Ventre_Privee_WebApiIssue
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddScoped<ValidateUserParameter>();
-            ////register the repository
+            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddScoped<UserParamsValidator>();
+            services.AddScoped<SecurityFilter>();
             services.AddTransient(typeof(IUserRepo), typeof(UserRepo));
+            services.AddCors();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,7 +42,12 @@ namespace Ventre_Privee_WebApiIssue
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            //app.UseCors(options => options.WithOrigins("http://http://localhost:53614").AllowAnyMethod());
+            app.UseCors(builder => builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials());
             app.UseMvc();
         }
     }

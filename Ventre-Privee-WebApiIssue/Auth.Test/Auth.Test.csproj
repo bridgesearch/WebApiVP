@@ -18,7 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Auth.Core\Auth.Core.csproj" />
     <ProjectReference Include="..\Auth.Infrastructure\Auth.Infrastructure.csproj" />
-    <ProjectReference Include="..\Ventre-Privee-WebApiIssue\Ventre-Privee-WebApi.csproj" />
+    <ProjectReference Include="..\Auth.WebApi\Auth.WebApi.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Ventre_Privee_WebApiIssue
+namespace Auth.WebApi
 {
     public class Program
     {

@@ -1,5 +1,6 @@
 using Auth.Core;
 using Auth.Infrastructure;
+using Auth.WebApi;
 using FluentAssertions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -10,8 +11,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Ventre_Privee_WebApiIssue;
-using Ventre_Privee_WebApiIssue.Controllers;
 using Xunit;
 
 namespace Auth.Test

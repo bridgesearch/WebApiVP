@@ -4,12 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Auth.Core;
+using Auth.WebApi.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Ventre_Privee_WebApiIssue.Filters;
+using Microsoft.Extensions.Options;
 
-namespace Ventre_Privee_WebApiIssue.Controllers
+namespace Auth.WebApi.Controllers
 {
     [Produces("application/json")]
     [Route("Auth/api/")]
@@ -31,9 +32,9 @@ namespace Ventre_Privee_WebApiIssue.Controllers
         [HttpPost]
         [Route("authenticate")]
         [AllowAnonymous]
-        [ValidateUserParameter]
+        [UserParamsValidator]
         public async Task<ActionResult> Authenticate([FromBody] User creds) {
-
+            
             var UserExists = await Task.Run(() => _user.ValidateUser(creds));
             return Ok(UserExists);
 
@@ -44,11 +45,13 @@ namespace Ventre_Privee_WebApiIssue.Controllers
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [Route("confidentials")]
+        [ServiceFilter(typeof(SecurityFilter))]
         public async Task<ActionResult> Confidentials(string email)
         {
-            return Ok(null);
+            var UserExists = await Task.Run(() => _user.GetUserConfidentials(email));
+            return Ok(UserExists);
         }
     }
 }
